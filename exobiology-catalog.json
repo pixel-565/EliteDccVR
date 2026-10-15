@@ -1,0 +1,820 @@
+{
+  "schema": 1,
+  "source": "https://github.com/EDCD/EDDI",
+  "revision": "d3b964ea7c8bb959ad6537f55b308f293a326905",
+  "license": "Apache-2.0",
+  "modified": "Converted species values and genus sampling distances into a compact JSON catalog.",
+  "price": "Base Vista Genomics reward; excludes first logged bonus.",
+  "distance": "Minimum separation between genetic samples, in metres; not remaining travel distance.",
+  "genuses": [
+    {
+      "symbol": "Aleoids",
+      "name": "Aleoida",
+      "distance_m": 150
+    },
+    {
+      "symbol": "Vents",
+      "name": "Amphora",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Sphere",
+      "name": "Anemone",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Bacterial",
+      "name": "Bacterium",
+      "distance_m": 500
+    },
+    {
+      "symbol": "Cone",
+      "name": "Bark Mounds",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Brancae",
+      "name": "Brain Tree",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Cactoid",
+      "name": "Cactoida",
+      "distance_m": 300
+    },
+    {
+      "symbol": "Clypeus",
+      "name": "Clypeus",
+      "distance_m": 150
+    },
+    {
+      "symbol": "Conchas",
+      "name": "Concha",
+      "distance_m": 150
+    },
+    {
+      "symbol": "Ground_Struct_Ice",
+      "name": "Crystalline Shards",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Electricae",
+      "name": "Electricae",
+      "distance_m": 1000
+    },
+    {
+      "symbol": "Fonticulus",
+      "name": "Fonticulua",
+      "distance_m": 500
+    },
+    {
+      "symbol": "Shrubs",
+      "name": "Frutexa",
+      "distance_m": 150
+    },
+    {
+      "symbol": "Fumerolas",
+      "name": "Fumerola",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Fungoids",
+      "name": "Fungoida",
+      "distance_m": 300
+    },
+    {
+      "symbol": "Osseus",
+      "name": "Osseus",
+      "distance_m": 800
+    },
+    {
+      "symbol": "Recepta",
+      "name": "Recepta",
+      "distance_m": 150
+    },
+    {
+      "symbol": "Tubers",
+      "name": "Tuber",
+      "distance_m": 100
+    },
+    {
+      "symbol": "Stratum",
+      "name": "Stratum",
+      "distance_m": 500
+    },
+    {
+      "symbol": "Tubus",
+      "name": "Tubus",
+      "distance_m": 800
+    },
+    {
+      "symbol": "Tussocks",
+      "name": "Tussock",
+      "distance_m": 200
+    }
+  ],
+  "species": [
+    {
+      "symbol": "Aleoids_01",
+      "name": "Aleoida Arcus",
+      "genus": "Aleoids",
+      "price_cr": 7252500
+    },
+    {
+      "symbol": "Aleoids_02",
+      "name": "Aleoida Coronamus",
+      "genus": "Aleoids",
+      "price_cr": 6284600
+    },
+    {
+      "symbol": "Aleoids_05",
+      "name": "Aleoida Gravis",
+      "genus": "Aleoids",
+      "price_cr": 12934900
+    },
+    {
+      "symbol": "Aleoids_04",
+      "name": "Aleoida Laminiae",
+      "genus": "Aleoids",
+      "price_cr": 3385200
+    },
+    {
+      "symbol": "Aleoids_03",
+      "name": "Aleoida Spica",
+      "genus": "Aleoids",
+      "price_cr": 3385200
+    },
+    {
+      "symbol": "Vents",
+      "name": "Amphora Plant",
+      "genus": "Vents",
+      "price_cr": 1628800
+    },
+    {
+      "symbol": "SphereEFGH",
+      "name": "Anemone Blatteum Bioluminescent",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereABCD_01",
+      "name": "Anemone Croceum",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "Sphere",
+      "name": "Anemone Luteolum",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereEFGH_02",
+      "name": "Anemone Prasinum Bioluminescent",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereABCD_02",
+      "name": "Anemone Puniceum",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereABCD_03",
+      "name": "Anemone Roseum",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereEFGH_03",
+      "name": "Anemone Roseum Bioluminescent",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "SphereEFGH_01",
+      "name": "Anemone Rubeum Bioluminescent",
+      "genus": "Sphere",
+      "price_cr": 1499900
+    },
+    {
+      "symbol": "Bacterial_04",
+      "name": "Bacterium Acies",
+      "genus": "Bacterial",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Bacterial_06",
+      "name": "Bacterium Alcyoneum",
+      "genus": "Bacterial",
+      "price_cr": 1658500
+    },
+    {
+      "symbol": "Bacterial_01",
+      "name": "Bacterium Aurasus",
+      "genus": "Bacterial",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Bacterial_10",
+      "name": "Bacterium Bullaris",
+      "genus": "Bacterial",
+      "price_cr": 1152500
+    },
+    {
+      "symbol": "Bacterial_12",
+      "name": "Bacterium Cerbrus",
+      "genus": "Bacterial",
+      "price_cr": 1689800
+    },
+    {
+      "symbol": "Bacterial_08",
+      "name": "Bacterium Informem",
+      "genus": "Bacterial",
+      "price_cr": 8418000
+    },
+    {
+      "symbol": "Bacterial_02",
+      "name": "Bacterium Nebulus",
+      "genus": "Bacterial",
+      "price_cr": 5289900
+    },
+    {
+      "symbol": "Bacterial_11",
+      "name": "Bacterium Omentum",
+      "genus": "Bacterial",
+      "price_cr": 4638900
+    },
+    {
+      "symbol": "Bacterial_03",
+      "name": "Bacterium Scopulum",
+      "genus": "Bacterial",
+      "price_cr": 4934500
+    },
+    {
+      "symbol": "Bacterial_07",
+      "name": "Bacterium Tela",
+      "genus": "Bacterial",
+      "price_cr": 1949000
+    },
+    {
+      "symbol": "Bacterial_13",
+      "name": "Bacterium Verrata",
+      "genus": "Bacterial",
+      "price_cr": 3897000
+    },
+    {
+      "symbol": "Bacterial_05",
+      "name": "Bacterium Vesicula",
+      "genus": "Bacterial",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Bacterial_09",
+      "name": "Bacterium Volu",
+      "genus": "Bacterial",
+      "price_cr": 7774700
+    },
+    {
+      "symbol": "Cone",
+      "name": "Bark Mounds Bark Mounds",
+      "genus": "Cone",
+      "price_cr": 1471900
+    },
+    {
+      "symbol": "SeedEFGH_01",
+      "name": "Brain Tree Aureum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedABCD_01",
+      "name": "Brain Tree Gypseeum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedEFGH_03",
+      "name": "Brain Tree Lindigoticum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedEFGH",
+      "name": "Brain Tree Lividum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedABCD_02",
+      "name": "Brain Tree Ostrinum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedEFGH_02",
+      "name": "Brain Tree Puniceum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "Seed",
+      "name": "Brain Tree Roseum",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "SeedABCD_03",
+      "name": "Brain Tree Viride",
+      "genus": "Brancae",
+      "price_cr": 1593700
+    },
+    {
+      "symbol": "Cactoid_01",
+      "name": "Cactoida Cortexum",
+      "genus": "Cactoid",
+      "price_cr": 3667600
+    },
+    {
+      "symbol": "Cactoid_02",
+      "name": "Cactoida Lapis",
+      "genus": "Cactoid",
+      "price_cr": 2483600
+    },
+    {
+      "symbol": "Cactoid_05",
+      "name": "Cactoida Peperatis",
+      "genus": "Cactoid",
+      "price_cr": 2483600
+    },
+    {
+      "symbol": "Cactoid_04",
+      "name": "Cactoida Pullulanta",
+      "genus": "Cactoid",
+      "price_cr": 3667600
+    },
+    {
+      "symbol": "Cactoid_03",
+      "name": "Cactoida Vermis",
+      "genus": "Cactoid",
+      "price_cr": 16202800
+    },
+    {
+      "symbol": "Clypeus_01",
+      "name": "Clypeus Lacrimam",
+      "genus": "Clypeus",
+      "price_cr": 8418000
+    },
+    {
+      "symbol": "Clypeus_02",
+      "name": "Clypeus Margaritus",
+      "genus": "Clypeus",
+      "price_cr": 11873200
+    },
+    {
+      "symbol": "Clypeus_03",
+      "name": "Clypeus Speculumi",
+      "genus": "Clypeus",
+      "price_cr": 16202800
+    },
+    {
+      "symbol": "Conchas_02",
+      "name": "Concha Aureolas",
+      "genus": "Conchas",
+      "price_cr": 7774700
+    },
+    {
+      "symbol": "Conchas_04",
+      "name": "Concha Biconcavis",
+      "genus": "Conchas",
+      "price_cr": 19010800
+    },
+    {
+      "symbol": "Conchas_03",
+      "name": "Concha Labiata",
+      "genus": "Conchas",
+      "price_cr": 2352400
+    },
+    {
+      "symbol": "Conchas_01",
+      "name": "Concha Renibus",
+      "genus": "Conchas",
+      "price_cr": 4572400
+    },
+    {
+      "symbol": "Ground_Struct_Ice",
+      "name": "Crystalline Shards Crystalline Shards",
+      "genus": "Ground_Struct_Ice",
+      "price_cr": 1628800
+    },
+    {
+      "symbol": "Electricae_01",
+      "name": "Electricae Pluma",
+      "genus": "Electricae",
+      "price_cr": 6284600
+    },
+    {
+      "symbol": "Electricae_02",
+      "name": "Electricae Radialem",
+      "genus": "Electricae",
+      "price_cr": 6284600
+    },
+    {
+      "symbol": "Fonticulus_02",
+      "name": "Fonticulua Campestris",
+      "genus": "Fonticulus",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Fonticulus_06",
+      "name": "Fonticulua Digitos",
+      "genus": "Fonticulus",
+      "price_cr": 1804100
+    },
+    {
+      "symbol": "Fonticulus_05",
+      "name": "Fonticulua Fluctus",
+      "genus": "Fonticulus",
+      "price_cr": 20000000
+    },
+    {
+      "symbol": "Fonticulus_04",
+      "name": "Fonticulua Lapida",
+      "genus": "Fonticulus",
+      "price_cr": 3111000
+    },
+    {
+      "symbol": "Fonticulus_01",
+      "name": "Fonticulua Segmentatus",
+      "genus": "Fonticulus",
+      "price_cr": 19010800
+    },
+    {
+      "symbol": "Fonticulus_03",
+      "name": "Fonticulua Upupam",
+      "genus": "Fonticulus",
+      "price_cr": 5727600
+    },
+    {
+      "symbol": "Shrubs_02",
+      "name": "Frutexa Acus",
+      "genus": "Shrubs",
+      "price_cr": 7774700
+    },
+    {
+      "symbol": "Shrubs_07",
+      "name": "Frutexa Collum",
+      "genus": "Shrubs",
+      "price_cr": 1639800
+    },
+    {
+      "symbol": "Shrubs_05",
+      "name": "Frutexa Fera",
+      "genus": "Shrubs",
+      "price_cr": 1632500
+    },
+    {
+      "symbol": "Shrubs_01",
+      "name": "Frutexa Flabellum",
+      "genus": "Shrubs",
+      "price_cr": 1808900
+    },
+    {
+      "symbol": "Shrubs_04",
+      "name": "Frutexa Flammasis",
+      "genus": "Shrubs",
+      "price_cr": 10326000
+    },
+    {
+      "symbol": "Shrubs_03",
+      "name": "Frutexa Metallicum",
+      "genus": "Shrubs",
+      "price_cr": 1632500
+    },
+    {
+      "symbol": "Shrubs_06",
+      "name": "Frutexa Sponsae",
+      "genus": "Shrubs",
+      "price_cr": 5988000
+    },
+    {
+      "symbol": "Fumerolas_04",
+      "name": "Fumerola Aquatis",
+      "genus": "Fumerolas",
+      "price_cr": 6284600
+    },
+    {
+      "symbol": "Fumerolas_01",
+      "name": "Fumerola Carbosis",
+      "genus": "Fumerolas",
+      "price_cr": 6284600
+    },
+    {
+      "symbol": "Fumerolas_02",
+      "name": "Fumerola Extremus",
+      "genus": "Fumerolas",
+      "price_cr": 16202800
+    },
+    {
+      "symbol": "Fumerolas_03",
+      "name": "Fumerola Nitris",
+      "genus": "Fumerolas",
+      "price_cr": 7500900
+    },
+    {
+      "symbol": "Fungoids_03",
+      "name": "Fungoida Bullarum",
+      "genus": "Fungoids",
+      "price_cr": 3703200
+    },
+    {
+      "symbol": "Fungoids_04",
+      "name": "Fungoida Gelata",
+      "genus": "Fungoids",
+      "price_cr": 3330300
+    },
+    {
+      "symbol": "Fungoids_01",
+      "name": "Fungoida Setisis",
+      "genus": "Fungoids",
+      "price_cr": 1670100
+    },
+    {
+      "symbol": "Fungoids_02",
+      "name": "Fungoida Stabitis",
+      "genus": "Fungoids",
+      "price_cr": 2680300
+    },
+    {
+      "symbol": "Osseus_05",
+      "name": "Osseus Cornibus",
+      "genus": "Osseus",
+      "price_cr": 1483000
+    },
+    {
+      "symbol": "Osseus_02",
+      "name": "Osseus Discus",
+      "genus": "Osseus",
+      "price_cr": 12934900
+    },
+    {
+      "symbol": "Osseus_01",
+      "name": "Osseus Fractus",
+      "genus": "Osseus",
+      "price_cr": 4027800
+    },
+    {
+      "symbol": "Osseus_06",
+      "name": "Osseus Pellebantus",
+      "genus": "Osseus",
+      "price_cr": 9739000
+    },
+    {
+      "symbol": "Osseus_04",
+      "name": "Osseus Pumice",
+      "genus": "Osseus",
+      "price_cr": 3156300
+    },
+    {
+      "symbol": "Osseus_03",
+      "name": "Osseus Spiralis",
+      "genus": "Osseus",
+      "price_cr": 2404700
+    },
+    {
+      "symbol": "Recepta_03",
+      "name": "Recepta Conditivus",
+      "genus": "Recepta",
+      "price_cr": 14313700
+    },
+    {
+      "symbol": "Recepta_02",
+      "name": "Recepta Deltahedronix",
+      "genus": "Recepta",
+      "price_cr": 16202800
+    },
+    {
+      "symbol": "Recepta_01",
+      "name": "Recepta Umbrux",
+      "genus": "Recepta",
+      "price_cr": 12934900
+    },
+    {
+      "symbol": "TubeABCD_02",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeEFGH",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeABCD_03",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeEFGH_01",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeABCD_01",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "Tube",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeEFGH_02",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "TubeEFGH_03",
+      "name": "Tuber Sinuous",
+      "genus": "Tubers",
+      "price_cr": 1514500
+    },
+    {
+      "symbol": "Stratum_04",
+      "name": "Stratum Araneamus",
+      "genus": "Stratum",
+      "price_cr": 2448900
+    },
+    {
+      "symbol": "Stratum_06",
+      "name": "Stratum Cucumisis",
+      "genus": "Stratum",
+      "price_cr": 16202800
+    },
+    {
+      "symbol": "Stratum_01",
+      "name": "Stratum Excutitus",
+      "genus": "Stratum",
+      "price_cr": 2448900
+    },
+    {
+      "symbol": "Stratum_08",
+      "name": "Stratum Frigus",
+      "genus": "Stratum",
+      "price_cr": 2637500
+    },
+    {
+      "symbol": "Stratum_03",
+      "name": "Stratum Laminamus",
+      "genus": "Stratum",
+      "price_cr": 2788300
+    },
+    {
+      "symbol": "Stratum_05",
+      "name": "Stratum Limaxus",
+      "genus": "Stratum",
+      "price_cr": 1362000
+    },
+    {
+      "symbol": "Stratum_02",
+      "name": "Stratum Paleas",
+      "genus": "Stratum",
+      "price_cr": 1362000
+    },
+    {
+      "symbol": "Stratum_07",
+      "name": "Stratum Tectonicas",
+      "genus": "Stratum",
+      "price_cr": 19010800
+    },
+    {
+      "symbol": "Tubus_03",
+      "name": "Tubus Cavas",
+      "genus": "Tubus",
+      "price_cr": 11873200
+    },
+    {
+      "symbol": "Tubus_05",
+      "name": "Tubus Compagibus",
+      "genus": "Tubus",
+      "price_cr": 7774700
+    },
+    {
+      "symbol": "Tubus_01",
+      "name": "Tubus Conifer",
+      "genus": "Tubus",
+      "price_cr": 2415500
+    },
+    {
+      "symbol": "Tubus_04",
+      "name": "Tubus Rosarium",
+      "genus": "Tubus",
+      "price_cr": 2637500
+    },
+    {
+      "symbol": "Tubus_02",
+      "name": "Tubus Sororibus",
+      "genus": "Tubus",
+      "price_cr": 5727600
+    },
+    {
+      "symbol": "Tussocks_08",
+      "name": "Tussock Albata",
+      "genus": "Tussocks",
+      "price_cr": 3252500
+    },
+    {
+      "symbol": "Tussocks_15",
+      "name": "Tussock Capillum",
+      "genus": "Tussocks",
+      "price_cr": 7025800
+    },
+    {
+      "symbol": "Tussocks_11",
+      "name": "Tussock Caputus",
+      "genus": "Tussocks",
+      "price_cr": 3472400
+    },
+    {
+      "symbol": "Tussocks_05",
+      "name": "Tussock Catena",
+      "genus": "Tussocks",
+      "price_cr": 1766600
+    },
+    {
+      "symbol": "Tussocks_04",
+      "name": "Tussock Cultro",
+      "genus": "Tussocks",
+      "price_cr": 1766600
+    },
+    {
+      "symbol": "Tussocks_10",
+      "name": "Tussock Divisa",
+      "genus": "Tussocks",
+      "price_cr": 1766600
+    },
+    {
+      "symbol": "Tussocks_03",
+      "name": "Tussock Ignis",
+      "genus": "Tussocks",
+      "price_cr": 1849000
+    },
+    {
+      "symbol": "Tussocks_01",
+      "name": "Tussock Pennata",
+      "genus": "Tussocks",
+      "price_cr": 5853800
+    },
+    {
+      "symbol": "Tussocks_06",
+      "name": "Tussock Pennatis",
+      "genus": "Tussocks",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Tussocks_09",
+      "name": "Tussock Propagito",
+      "genus": "Tussocks",
+      "price_cr": 1000000
+    },
+    {
+      "symbol": "Tussocks_07",
+      "name": "Tussock Serrati",
+      "genus": "Tussocks",
+      "price_cr": 4447100
+    },
+    {
+      "symbol": "Tussocks_13",
+      "name": "Tussock Stigmasis",
+      "genus": "Tussocks",
+      "price_cr": 19010800
+    },
+    {
+      "symbol": "Tussocks_12",
+      "name": "Tussock Triticum",
+      "genus": "Tussocks",
+      "price_cr": 7774700
+    },
+    {
+      "symbol": "Tussocks_02",
+      "name": "Tussock Ventusa",
+      "genus": "Tussocks",
+      "price_cr": 3227700
+    },
+    {
+      "symbol": "Tussocks_14",
+      "name": "Tussock Virgam",
+      "genus": "Tussocks",
+      "price_cr": 14313700
+    }
+  ]
+}

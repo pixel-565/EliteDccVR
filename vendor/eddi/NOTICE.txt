@@ -1,0 +1,4 @@
+EDDI reference data, https://github.com/EDCD/EDDI
+Revision: d3b964ea7c8bb959ad6537f55b308f293a326905
+Copyright EDDI contributors. Licensed under Apache License 2.0.
+Modified: extracted values, English names and sampling distances into exobiology-catalog.json.

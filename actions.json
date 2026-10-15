@@ -1,0 +1,52 @@
+{
+  "action_sets": [
+    {
+      "name": "/actions/main",
+      "usage": "leftright"
+    }
+  ],
+  "actions": [
+    {
+      "name": "/actions/main/in/toggle",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/click",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/aim",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/main/in/navigate",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/main/in/select",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/main/in/grab",
+      "type": "boolean"
+    }
+  ],
+  "default_bindings": [
+    {
+      "controller_type": "oculus_touch",
+      "binding_url": "bindings/oculus_touch.json"
+    }
+  ],
+  "localization": [
+    {
+      "language_tag": "en_US",
+      "/actions/main": "EliteDccVR",
+      "/actions/main/in/toggle": "Show / hide panel",
+      "/actions/main/in/click": "Click panel",
+      "/actions/main/in/aim": "Right pointer",
+      "/actions/main/in/navigate": "Navigate Elite interface",
+      "/actions/main/in/select": "Select Elite interface item",
+      "/actions/main/in/grab": "Move panel"
+    }
+  ]
+}

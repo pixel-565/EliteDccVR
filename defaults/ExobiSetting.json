@@ -1,0 +1,8 @@
+{
+  "IncompleteColor": "#06044a",
+  "CompletedColor": "#044a0d",
+  "RowGapPx": 4,
+  "DistanceBelowMinimumColor": "#7f7bf2",
+  "DistanceReadyColor": "#24bf38",
+  "StatusReadIntervalMs": 100
+}

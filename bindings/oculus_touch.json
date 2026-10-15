@@ -1,0 +1,99 @@
+{
+  "controller_type": "oculus_touch",
+  "name": "EliteDccVR - Touch",
+  "description": "Selected hand: B/Y toggles; trigger clicks; Grip moves panels; Grip + stick adjusts depth.",
+  "bindings": {
+    "/actions/main": {
+      "sources": [
+        {
+          "path": "/user/hand/right/input/b",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/toggle"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/click"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/joystick",
+          "mode": "joystick",
+          "inputs": {
+            "position": {
+              "output": "/actions/main/in/navigate"
+            },
+            "click": {
+              "output": "/actions/main/in/select"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/y",
+          "mode": "button",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/toggle"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/click"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/joystick",
+          "mode": "joystick",
+          "inputs": {
+            "position": {
+              "output": "/actions/main/in/navigate"
+            },
+            "click": {
+              "output": "/actions/main/in/select"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/grip",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/grab"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/grip",
+          "mode": "trigger",
+          "inputs": {
+            "click": {
+              "output": "/actions/main/in/grab"
+            }
+          }
+        }
+      ],
+      "poses": [
+        {
+          "path": "/user/hand/right/pose/raw",
+          "output": "/actions/main/in/aim"
+        },
+        {
+          "output": "/actions/main/in/aim",
+          "path": "/user/hand/left/pose/raw"
+        }
+      ]
+    }
+  }
+}

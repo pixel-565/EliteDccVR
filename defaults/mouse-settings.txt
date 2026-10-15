@@ -1,0 +1,5 @@
+Integration 1
+ShowFrame 0
+Mouse 1
+CursorDiagnostics 0
+AutoAlignCursor 1

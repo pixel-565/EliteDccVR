@@ -1,0 +1,23 @@
+name: Windows build and regression tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Windows x64
+        shell: cmd
+        run: build.cmd
+      - name: Core and synthetic cockpit tests
+        shell: cmd
+        run: verify.cmd
+      - name: Journal and exobiology tests
+        shell: cmd
+        run: verify_navigation.cmd
+      - name: Overlay layout and input tests
+        shell: cmd
+        run: verify_navigation_resize.cmd

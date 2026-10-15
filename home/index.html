@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Home</title>
+  <link rel="stylesheet" href="home.css">
+  <script src="home.js" defer></script>
+</head>
+<body>
+  <h1>EliteDccVR Browser</h1>
+  <p>Aim and click with the trigger. Use the joystick to scroll.</p>
+  <p>Edit a shortcut with its pencil, or add one with +.</p>
+  <p id="status" role="status"></p>
+  <main id="links" aria-label="Home shortcuts"></main>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="link-form" novalidate>
+      <h2 id="editor-title">Add shortcut</h2>
+      <label for="link-name">Name</label>
+      <input id="link-name" type="text" maxlength="80" autocomplete="off" required>
+      <label for="link-url">Web address</label>
+      <input id="link-url" type="url" maxlength="2048" placeholder="https://" autocomplete="off" spellcheck="false" required>
+      <p id="error" role="alert"></p>
+      <div id="actions" class="actions">
+        <button id="delete" class="danger" type="button">Delete</button>
+        <button id="cancel" type="button">Cancel</button>
+        <button id="save" class="primary" type="submit">Save</button>
+      </div>
+      <div id="confirmation" hidden>
+        <p>Remove this shortcut from Home?</p>
+        <div class="actions">
+          <button id="keep" type="button">Keep</button>
+          <button id="remove" class="danger" type="button">Remove</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

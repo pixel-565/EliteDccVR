@@ -1,0 +1,17 @@
+#pragma once
+#include <windows.h>
+#include <bcrypt.h>
+#include <cstring>
+namespace CursorSignature
+{
+inline bool shader(const void *bytes, SIZE_T size)
+{
+    if (!bytes || size != 2992) return false;
+    static constexpr unsigned char expected[32] = {
+        0x55,0x97,0x6b,0x91,0x67,0xc0,0x52,0x7b,0xe6,0x39,0x33,0x65,0xf0,0x06,0x7c,0xc3,
+        0x4b,0xf6,0x68,0x69,0x7b,0x59,0x84,0xb6,0x80,0x04,0xe1,0x54,0x31,0x8d,0x07,0x1d};
+    unsigned char hash[32];
+    return BCryptHash(BCRYPT_SHA256_ALG_HANDLE,nullptr,0,(PUCHAR)bytes,static_cast<ULONG>(size),hash,32)==0 &&
+           !memcmp(hash,expected,32);
+}
+}
