@@ -3,3 +3,4 @@ ShowFrame 0
 Mouse 1
 CursorDiagnostics 0
 AutoAlignCursor 1
+HideGameCursor 0

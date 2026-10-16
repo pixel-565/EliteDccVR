@@ -4,6 +4,10 @@ cd /d "%~dp0"
 call "%~dp0SetupBuildEnv.cmd"
 if errorlevel 1 exit /b 1
 if not exist bin mkdir bin
+cl /nologo /std:c++20 /EHsc /W4 /O2 /MT integration\verify_cursor_color.cpp /Febin\VerifyCursorColor.exe /Fobin\verify_cursor_color.obj /link d3d11.lib d3dcompiler.lib
+if errorlevel 1 exit /b 1
+bin\VerifyCursorColor.exe
+if errorlevel 1 exit /b 1
 cl /nologo /std:c++20 /EHsc /W4 /O2 /MT integration\verify_ship.cpp /Febin\VerifyShip.exe /Fobin\verify_ship.obj /link bcrypt.lib
 if errorlevel 1 exit /b 1
 bin\VerifyShip.exe

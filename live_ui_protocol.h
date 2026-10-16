@@ -4,7 +4,7 @@
 #include <string>
 namespace LiveUI
 {
-constexpr DWORD Magic = 0x564b553d;
+constexpr DWORD Magic = 0x564b5540;
 constexpr unsigned Vertices = 77, Indices = 360;
 // Shared high-resolution monotonic milliseconds, independent of process lifetime.
 inline uint64_t sampleTime()
@@ -48,6 +48,8 @@ struct State
     volatile LONG enabled = 0;
     volatile LONG cursorEnabled = 0;
     volatile LONG lateDiscovery = 1;
+    volatile LONG hideGameCursor = 0;
+    volatile LONG64 cursorControlStamp = 0;
     volatile LONG64 heartbeat = 0;
     wchar_t status[256]{};
     Snapshot snapshot;

@@ -26,6 +26,7 @@
 #include "reconnect.h"
 #include "../ship_controls.h"
 #include "ship_signature.h"
+#include "../cursor_visibility.h"
 using Microsoft::WRL::ComPtr;
 static LiveUI::Channel channel;
 static std::mutex captureMutex;
@@ -87,6 +88,8 @@ using CreateVS = HRESULT(STDMETHODCALLTYPE *)(ID3D11Device *, const void *, SIZE
 using CreateLayout = HRESULT(STDMETHODCALLTYPE *)(ID3D11Device *, const D3D11_INPUT_ELEMENT_DESC *, UINT,
                                                   const void *, SIZE_T, ID3D11InputLayout **);
 using Draw = void(STDMETHODCALLTYPE *)(ID3D11DeviceContext *, UINT, UINT, UINT, INT, UINT);
+#include "cursor_visibility_draw.h"
+#include "cursor_color_mask.h"
 static CreateVS originalVS;
 static CreateLayout originalLayout;
 static Draw originalDraw;
@@ -185,6 +188,7 @@ static std::vector<char> modelRecord(ID3D11DeviceContext *c, uint32_t index)
     return readRange(c, buffer.Get(), (uint64_t(desc.Buffer.FirstElement) + index) * 336, 336);
 }
  #include "ship_capture.h"
+#include "cursor_graphics_probe.h"
 static void capture(ID3D11DeviceContext *c, UINT count, UINT instances, UINT start, INT base, UINT first)
 {
     if (!ready || !channel.state || !InterlockedCompareExchange(&channel.state->enabled, 0, 0) ||
@@ -348,7 +352,13 @@ static void captureCursor(ID3D11DeviceContext *c, UINT count, UINT instances, UI
     unsigned char hash[32];
     if (BCryptHash(BCRYPT_SHA256_ALG_HANDLE, nullptr, 0, (PUCHAR)vertices.data(), 160, hash, 32) != 0) return;
     bool recognized = !memcmp(hash, expected, 32);
-    if(!recognized)return;
+    if(!recognized)
+    {
+        if(sameCursorAllocation(cursorVS.Get(),layout.Get(),vb.Get(),ib.Get(),format,offset,voffset,stride,start,base))cursorDraw={};
+        return;
+    }
+    if(fast)
+        cursorDraw={cursorVS,layout,vb,ib,format,offset,voffset,stride,start,base,GetTickCount64()};
     auto inst = readRange(c, instance.Get(), uint64_t(ioffset) + uint64_t(first) * 8, 8);
     if (inst.size() != 8)
         return;
@@ -369,6 +379,7 @@ static void captureCursor(ID3D11DeviceContext *c, UINT count, UINT instances, UI
         DWORD value=LiveUI::Magic;cursorVS->SetPrivateData(CursorTag,sizeof(value),&value);tag(layout.Get());
     } else lateCursor.resolved=true;
     lastCursor = GetTickCount64();
+    cursorDraw={cursorVS,layout,vb,ib,format,offset,voffset,stride,start,base,lastCursor};
     LiveUI::Cursor result{};
     result.pid = GetCurrentProcessId();
     result.stamp = observationStamp;
@@ -387,17 +398,24 @@ static void STDMETHODCALLTYPE draw(ID3D11DeviceContext *c, UINT count, UINT inst
                                    UINT first)
 {
     std::shared_lock channelGuard(channelMutex,std::try_to_lock);
-    if(!channelGuard){originalDraw(c,count,instances,start,base,first);return;}
+    if(!channelGuard || !channel.state ||
+       !InterlockedCompareExchange(&channel.state->enabled,0,0))
+    {originalDraw(c,count,instances,start,base,first);return;}
+    bool hide = false;
     try
     {
         capture(c, count, instances, start, base, first);
         captureCursor(c, count, instances, start, base, first);
         captureShip(c, count, instances, start, base, first);
+        refreshCursorDraw(c,count,instances,start,base);
+        hide = hideCursorDraw(c,count,instances,start,base);
     }
     catch (...)
     {
         channel.status(L"UI read failed; waiting for valid data");
     }
+    // Always execute the game's draw, including queries and shader/depth side effects.
+    CursorColorMask colorMask(c,hide);
     originalDraw(c, count, instances, start, base, first);
 }
 static void *validate(const HookSite &site)
@@ -446,7 +464,7 @@ static LONG reconnectOwner(DWORD previous,DWORD owner)
     LiveUI::Channel candidate;
     if(!candidate.open(owner,false))return 1;
     std::swap(channel.mapping,candidate.mapping);std::swap(channel.mutex,candidate.mutex);std::swap(channel.state,candidate.state);
-    lastCapture=lastCursor=lastShipCapture=0;cursorSurface={};serial=0;
+    lastCapture=lastCursor=lastShipCapture=0;cursorSurface={};cursorDraw={};serial=0;
     lateUI={};lateCursor={};
     lateUIShader.Reset();lateUILayout.Reset();lateCursorShader.Reset();lateCursorLayout.Reset();
     channel.status(L"Reconnected to existing integration. Waiting for UI.");

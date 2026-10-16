@@ -13,7 +13,7 @@ bool liveFrameRequested = false;
 int giSelectedTab = 2;
 bool liveMouseEnabled = false, liveMousePointing = false, liveSurfaceReady = false;
 LiveMeshHit liveMouseHit;
-bool cursorDiagnostics = false, autoAlignCursor = false;
+bool cursorDiagnostics = false, autoAlignCursor = false, hideGameCursor = false;
 CursorAlign cursorAlign;
 DWORD alignPid = 0;
 uint64_t alignRevision = 0;
@@ -33,7 +33,7 @@ void updateLiveMouse(bool allowed, bool triggerPressed, bool triggerDown, bool g
     liveMouseMoveReady=false;
     if (liveUi.channel.state)
         InterlockedExchange(&liveUi.channel.state->cursorEnabled,
-                            (cursorDiagnostics || autoAlignCursor) ? 1 : 0);
+                            (cursorDiagnostics || autoAlignCursor || (hideGameCursor && liveMouseEnabled)) ? 1 : 0);
     bool contextValid = liveMouseEnabled && liveUi.enabled && liveSurfaceReady && allowed &&
                         isEliteForeground(GetForegroundWindow());
     bool valid = contextValid && liveMousePointing;
@@ -138,6 +138,12 @@ void updateLiveMouse(bool allowed, bool triggerPressed, bool triggerDown, bool g
                 break;
             }
     }
+    if (liveUi.channel.state)
+    {
+        bool hide = hideGameCursor && valid && liveMouseMoveReady;
+        InterlockedExchange64(&liveUi.channel.state->cursorControlStamp, hide ? GetTickCount64() : 0);
+        InterlockedExchange(&liveUi.channel.state->hideGameCursor, hide ? 1 : 0);
+    }
     if (status != liveMouseStatus)
     {
         liveMouseStatus = status;
@@ -156,7 +162,7 @@ float giPointerX = -1;
 void saveMouseSettings()
 {
     std::ofstream f(root / L"mouse-settings.tmp");
-    MouseSettings{liveUi.enabled, liveFrameRequested, liveMouseEnabled, cursorDiagnostics, autoAlignCursor}
+    MouseSettings{liveUi.enabled, liveFrameRequested, liveMouseEnabled, cursorDiagnostics, autoAlignCursor, hideGameCursor}
         .write(f);
     f.close();
     if (f)
@@ -280,6 +286,7 @@ static D2D1_RECT_F giRect(int id)
         return {900, 470, 1010, 525};
     if (id == 610)
         return {1050, 470, 1160, 525};
+    if (id == 617) return {40, 730, 1160, 790};
     if (id >= 613 && id <= 616)
     {
         float y = id <= 614 ? 600.f : 665.f;
@@ -306,7 +313,7 @@ int hitGameInterface(float x, float y)
     }
     else
     {
-        for (int id : {601, 602, 604, 606, 607, 609, 610, 611, 612, 613, 614, 615, 616})
+        for (int id : {601, 602, 604, 606, 607, 609, 610, 611, 612, 613, 614, 615, 616, 617})
             if (contains(giRect(id), x, y))
                 return id;
     }
@@ -374,6 +381,15 @@ void activateGameInterface(int id)
         liveUi.toggle(root);
     if (id == 602)
         liveFrameRequested = !liveFrameRequested;
+    if (id == 617)
+    {
+        hideGameCursor = !hideGameCursor;
+        if(!hideGameCursor && liveUi.channel.state)
+        {
+            InterlockedExchange(&liveUi.channel.state->hideGameCursor,0);
+            InterlockedExchange64(&liveUi.channel.state->cursorControlStamp,0);
+        }
+    }
     if (id == 607)
     {
         autoAlignCursor = !autoAlignCursor;
@@ -399,7 +415,7 @@ void activateGameInterface(int id)
         cursorDiagnostics = !cursorDiagnostics;
         if (liveUi.channel.state)
             InterlockedExchange(&liveUi.channel.state->cursorEnabled,
-                                (cursorDiagnostics || autoAlignCursor) ? 1 : 0);
+                                (cursorDiagnostics || autoAlignCursor || (hideGameCursor && liveMouseEnabled)) ? 1 : 0);
         liveUi.cursor = {};
         if (liveUi.channel.state && liveUi.channel.lock())
         {
@@ -411,7 +427,7 @@ void activateGameInterface(int id)
         liveMouseEnabled = !liveMouseEnabled;
     if (liveUi.channel.state)
         InterlockedExchange(&liveUi.channel.state->cursorEnabled,
-                            (cursorDiagnostics || autoAlignCursor) ? 1 : 0);
+                            (cursorDiagnostics || autoAlignCursor || (hideGameCursor && liveMouseEnabled)) ? 1 : 0);
     if (id != 600)
         saveMouseSettings();
     giDirty = true;
@@ -431,9 +447,10 @@ void initGameInterface()
     liveMouseEnabled = restored.mouse;
     cursorDiagnostics = restored.diagnostics;
     autoAlignCursor = restored.align;
+    hideGameCursor = restored.hideCursor;
     if (liveUi.channel.state)
         InterlockedExchange(&liveUi.channel.state->cursorEnabled,
-                            (cursorDiagnostics || autoAlignCursor) ? 1 : 0);
+                            (cursorDiagnostics || autoAlignCursor || (hideGameCursor && liveMouseEnabled)) ? 1 : 0);
     if (restored.integration)
         liveUi.toggle(root);
     {
@@ -510,7 +527,7 @@ void drawGameInterface()
         rect.top += 12;
         label(text, rect);
     };
-    label(L"Settings / v2.28.0", {40, 10, 950, 55});
+    label(L"Settings / v2.31.0", {40, 10, 950, 55});
     button(600, L"");
     auto hide = giRect(600);
     float x = (hide.left + hide.right) * .5f, y = (hide.top + hide.bottom) * .5f;
@@ -578,8 +595,8 @@ void drawGameInterface()
         button(615, L"-"); button(616, L"+");
         label(L"Left drag divisor: " + std::to_wstring(leftDragDivisor), {40, 600, 870, 655});
         label(L"Right drag divisor: " + std::to_wstring(rightDragDivisor), {40, 665, 870, 720});
-        label(L"Higher divisor = slower drag | 1 = full speed", {40, 730, 1160, 785});
-        label(cursorDiagnosticStatus, {40, 790, 1160, 885});
+        button(617, hideGameCursor ? L"Hide game cursor: On" : L"Hide game cursor: Off");
+        label(cursorDiagnosticStatus, {40, 800, 1160, 895});
     }
     hr(giTarget->EndDraw());
     context->Flush();

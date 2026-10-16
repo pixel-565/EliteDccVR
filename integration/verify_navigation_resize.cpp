@@ -74,6 +74,13 @@ int main(){try{
  {std::ifstream in(idleSettingsFolder/"mouse-drag-settings.txt");int l=0,r=0;in>>l>>r;require(l==9 && r==7,"Drag persistence failed");}
  test.leftDragDivisor=1;test.activateGameInterface(613);require(test.leftDragDivisor==1,"Drag minimum failed");
  test.rightDragDivisor=50;test.activateGameInterface(616);require(test.rightDragDivisor==50,"Drag maximum failed");
+ require(!test.hideGameCursor && test.hitGameInterface(500,755)==617,"Cursor hide control default or bounds wrong");
+ test.activateGameInterface(617);require(test.hideGameCursor,"Cursor hide On failed");
+ {std::ifstream in(idleSettingsFolder/"mouse-settings.txt");MouseSettings persisted;persisted.read(in);require(persisted.hideCursor,"Cursor hide setting not persisted");}
+ require(test.liveUi.channel.open(GetCurrentProcessId(),true),"Cursor visibility IPC test setup failed");
+ test.liveUi.channel.state->hideGameCursor=1;test.liveUi.channel.state->cursorControlStamp=GetTickCount64();
+ test.activateGameInterface(617);require(!test.hideGameCursor,"Cursor hide Off failed");
+ require(test.liveUi.channel.state->hideGameCursor==0 && test.liveUi.channel.state->cursorControlStamp==0,"Off did not clear rendering command immediately");
  std::filesystem::remove(idleSettingsFolder/"mouse-drag-settings.txt");
  std::filesystem::remove(idleSettingsFolder/"mouse-y-scale.txt");
  std::filesystem::remove(idleSettingsFolder/"mouse-settings.txt");

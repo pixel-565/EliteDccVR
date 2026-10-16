@@ -6,7 +6,7 @@ EliteDccVR brings a ray-operated keyboard, browser, navigation and exobiology in
 
 [Download the Windows release](https://github.com/pixel-565/EliteDccVR/releases/latest) | [Source and issues](https://github.com/pixel-565/EliteDccVR)
 
-The first public version is **2.28.0**, based on the locally tested VRKeyboard V2.28. This is a community project, not an official Frontier Developments product.
+The current version is **2.31.0**. This is a community project, not an official Frontier Developments product.
 
 ## Requirements
 
@@ -57,7 +57,9 @@ Game Control has independent left/right drag divisors. Larger values slow draggi
 
 Integration loads a D3D11/OpenVR bridge into the running Elite process. It reads known UI draw geometry and cursor feedback; it does not replace game DLLs or modify EDVR files. The host can attach to a running game and reconnect after restarting the companion when protocols are compatible.
 
-For menu and Galaxy Map mouse UI, enable **Integration**, **Mouse** and optionally **Auto-align cursor**. **Show frame** and **Cursor diagnostics** help verify the captured surface and cursor.
+For menu and Galaxy Map mouse UI, enable **Integration**, **Mouse** and optionally **Auto-align cursor**. **Show frame** and **Cursor diagnostics** help verify the captured surface and cursor. Optional **Hide game cursor** is off by default. It hides only the cursor color output while preserving the original draw, depth processing and occlusion queries, so game interaction and cursor feedback continue.
+
+When upgrading from 2.28.0, restart Elite once to load the updated bridge protocol.
 
 Supported cockpit controls currently comprise **Starport Services, Auto Launch, Disembark and the four service icons above them**. These controls use Elite's UI navigation bindings rather than mouse input. Aiming changes the selection; trigger requests confirmation, which is sent only after the observed highlight matches the target. Unknown or ambiguous highlights are not confirmed.
 

@@ -709,7 +709,7 @@ struct App
         {std::ifstream themeFile(root/L"theme.txt");std::string themeName;themeFile>>themeName;eliteTheme=themeName=="Elite";}
         fs::create_directories(root / L"logs");
         log.open(root / L"logs" / L"latest.log");
-        note("EliteDccVR 2.28.0 starting");
+        note("EliteDccVR 2.31.0 starting");
         vr::EVRInitError err = vr::VRInitError_None;
         sys = vr::VR_Init(&err, vr::VRApplication_Overlay);
         if (err != vr::VRInitError_None)
@@ -717,7 +717,7 @@ struct App
         // Register a temporary manifest so SteamVR can identify this overlay and its bindings.
         std::ofstream manifest(root / L"app.vrmanifest");
         manifest
-            << R"({"applications":[{"app_key":"local.eliteoverlay.v1","launch_type":"binary","binary_path_windows":"bin/EliteDccVR.exe","is_dashboard_overlay":true,"strings":{"en_us":{"name":"EliteDccVR v2.28.0"}}}]})";
+            << R"({"applications":[{"app_key":"local.eliteoverlay.v1","launch_type":"binary","binary_path_windows":"bin/EliteDccVR.exe","is_dashboard_overlay":true,"strings":{"en_us":{"name":"EliteDccVR v2.31.0"}}}]})";
         manifest.close();
         auto registration =
             vr::VRApplications()->AddApplicationManifest((root / L"app.vrmanifest").string().c_str(), true);
@@ -806,7 +806,7 @@ struct App
             }
         D3D11_SUBRESOURCE_DATA dotData = {dotPixels.data(), dotSize * 4, 0};
         hr(device->CreateTexture2D(&td, &dotData, &dotTexture));
-        check(vr::VROverlay()->CreateOverlay("local.eliteoverlay.v1.panel", "EliteDccVR v2.28.0", &panel));
+        check(vr::VROverlay()->CreateOverlay("local.eliteoverlay.v1.panel", "EliteDccVR v2.31.0", &panel));
         check(
             vr::VROverlay()->CreateOverlay("local.eliteoverlay.v1.toolbox", "EliteDccVR Toolbox", &toolbox));
         check(vr::VROverlay()->SetOverlayInputMethod(toolbox, vr::VROverlayInputMethod_None));
@@ -1767,7 +1767,7 @@ struct App
     void initBrowserGraphics()
     {
         createBrowserTexture();
-        check(vr::VROverlay()->CreateOverlay("local.eliteoverlay.v1.browser", "VR Browser v2.28.0",
+        check(vr::VROverlay()->CreateOverlay("local.eliteoverlay.v1.browser", "VR Browser v2.31.0",
                                              &browserPanel));
         check(vr::VROverlay()->SetOverlayInputMethod(browserPanel, vr::VROverlayInputMethod_None));
         check(vr::VROverlay()->SetOverlayWidthInMeters(browserPanel, browserWidth));
@@ -3675,7 +3675,7 @@ struct App
                 ++coordinateAttempts;
             }
             scene = vr::VRApplications()->GetCurrentSceneProcessId();
-            std::wstring status = L"EliteDccVR v2.28.0 | Scene PID: " + std::to_wstring(scene) + L" | " +
+            std::wstring status = L"EliteDccVR v2.31.0 | Scene PID: " + std::to_wstring(scene) + L" | " +
                                   (workspace.open ? L"Toolbox visible" : L"All hidden") +
                                   L" | T: toggle, R: recenter, B: bindings";
             SetWindowTextW(window, status.c_str());
@@ -3782,7 +3782,7 @@ LRESULT CALLBACK proc(HWND hwnd, UINT msg, WPARAM w, LPARAM l)
         r.top += 20;
         DrawTextW(
             dc,
-            L"EliteDccVR v2.28.0\n\nUse the headset to interact with the panel.\nRight B / Left Y: show / "
+            L"EliteDccVR v2.31.0\n\nUse the headset to interact with the panel.\nRight B / Left Y: show / "
             L"hide the workspace. "
             L"Right "
             L"trigger: click.\n\nDesktop shortcuts (this window focused):\nT: show / hide   R: recenter   B: "
@@ -3826,7 +3826,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int)
         wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
         wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
         RegisterClassW(&wc);
-        a.window = CreateWindowW(wc.lpszClassName, L"EliteDccVR v2.28.0", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
+        a.window = CreateWindowW(wc.lpszClassName, L"EliteDccVR v2.31.0", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
                                  CW_USEDEFAULT, 950, 410, nullptr, nullptr, instance, nullptr);
         if (!a.window)
             throw std::runtime_error("Could not create control window");

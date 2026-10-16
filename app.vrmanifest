@@ -1,1 +1,1 @@
-{"applications":[{"app_key":"local.eliteoverlay.v1","launch_type":"binary","binary_path_windows":"bin/EliteDccVR.exe","is_dashboard_overlay":true,"strings":{"en_us":{"name":"EliteDccVR v2.28.0"}}}]}
+{"applications":[{"app_key":"local.eliteoverlay.v1","launch_type":"binary","binary_path_windows":"bin/EliteDccVR.exe","is_dashboard_overlay":true,"strings":{"en_us":{"name":"EliteDccVR v2.31.0"}}}]}

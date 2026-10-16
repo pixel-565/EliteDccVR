@@ -25,6 +25,8 @@ struct LiveUiClient
         if (!enabled)
         {
             status = L"Integration Off";
+            InterlockedExchange(&channel.state->hideGameCursor, 0);
+            InterlockedExchange64(&channel.state->cursorControlStamp, 0);
             snapshot = {};
             ship = {};
             if (channel.lock())

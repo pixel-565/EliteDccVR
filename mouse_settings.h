@@ -5,7 +5,7 @@
 #include <string>
 struct MouseSettings
 {
-    bool integration = false, frame = false, mouse = false, diagnostics = false, align = false;
+    bool integration = false, frame = false, mouse = false, diagnostics = false, align = false, hideCursor = false;
     void read(std::istream &input)
     {
         std::string line;
@@ -24,6 +24,8 @@ struct MouseSettings
                 mouse = value != 0;
             else if (key == "CursorDiagnostics")
                 diagnostics = value != 0;
+            else if (key == "HideGameCursor")
+                hideCursor = value != 0;
             else if (key == "AutoAlignCursor")
                 align = value != 0;
         }
@@ -34,6 +36,7 @@ struct MouseSettings
                << "ShowFrame " << frame << '\n'
                << "Mouse " << mouse << '\n'
                << "CursorDiagnostics " << diagnostics << '\n'
-               << "AutoAlignCursor " << align << '\n';
+               << "AutoAlignCursor " << align << '\n'
+               << "HideGameCursor " << hideCursor << '\n';
     }
 };
