@@ -71,3 +71,7 @@ The log is `%TEMP%\EliteDccVR-OpenXR-panel.log`; `OpenXR/Show-Diagnostics.cmd` o
 - Saved panel outside view: with Elite closed, back up and remove only that panel's `EliteDccVR-OpenXR-*.position` file to restore default placement.
 
 Do not post browser profiles, tokens, commander journals or raw memory dumps in public issues.
+
+## Portable launcher paths
+
+The release ZIP contains the layer manifest and DLL together in `OpenXR/`. Select the JSON manifest, not the DLL. On the first run from a new or moved package, the launcher selects its bundled manifest relative to its own EXE, instead of reusing another installation's saved absolute path. Explicitly selected external builds are remembered for the same launcher location while valid. GitHub source archives contain source code; download the Windows x64 release ZIP for prebuilt binaries.

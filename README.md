@@ -6,7 +6,7 @@
 
 | Edition | Runtime | Download / guide |
 | --- | --- | --- |
-| OpenXR 0.80.0 | OpenXR / D3D11; tested with Quest 3, Quest Touch, Virtual Desktop VDXR and EDVR | [OpenXR test release](https://github.com/pixel-565/EliteDccVR/releases/tag/openxr-v0.80.0) |
+| OpenXR 0.80.1 | OpenXR / D3D11; tested with Quest 3, Quest Touch, Virtual Desktop VDXR and EDVR | [OpenXR test release](https://github.com/pixel-565/EliteDccVR/releases/tag/openxr-v0.80.1) |
 | Legacy 2.31.0 | SteamVR / OpenVR | [SteamVR release](https://github.com/pixel-565/EliteDccVR/releases/tag/v2.31.0), [legacy guide](docs/STEAMVR.md) |
 
 The OpenXR edition is an experimental public test build. Its panels, native selection, System Map navigation and adjustable acceleration have been tested in the developer's headset setup. Other hardware, runtimes and game versions are not comprehensively validated. The original SteamVR edition remains available separately.
@@ -27,7 +27,7 @@ Journal-based Navigation/planet/exobiology panels and biological-object detectio
 ## Quick start: OpenXR
 
 1. Make sure Elite already works in VR through **OpenXR**. The tested configuration uses EDVR with Virtual Desktop set to **VDXR**. This package does not install EDVR or convert an OpenVR game by itself.
-2. Download the Windows x64 ZIP from the [OpenXR release](https://github.com/pixel-565/EliteDccVR/releases/tag/openxr-v0.80.0), extract it to a permanent writable folder, and close Elite.
+2. Download the Windows x64 ZIP from the [OpenXR release](https://github.com/pixel-565/EliteDccVR/releases/tag/openxr-v0.80.1), extract it to a permanent writable folder, and close Elite.
 3. Run `EliteDccVRLauncher.exe`, choose **OpenXR**, and select `OpenXR/EliteDccVR.OpenXRLayer.json` with **Browse** if necessary.
 4. Click **Enable OpenXR**, then start Elite in VR. The optional Steam checkbox can launch Elite; the game must still be configured for OpenXR.
 5. **B** on the right controller or **Y** on the left hides/shows the workspace. Open Browser, Keyboard or Settings from the Toolbox.

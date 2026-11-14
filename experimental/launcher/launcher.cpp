@@ -15,7 +15,7 @@
 #include "../../vendor/json/json.hpp"
 namespace fs = std::filesystem;
 static HWND pathBox, statusBox, launchButton, browseButton, mainWindow, modeBox, gameBox, runtimeBox, disableButton;
-static fs::path config, buildPaths[2];
+static fs::path config, packageDirectory, buildPaths[2];
 static int mode=0;
 static HMODULE pluginModule = nullptr;
 static fs::path pendingDll, pendingRoot;
@@ -97,6 +97,13 @@ static bool validateLayer(const fs::path& manifest) {
         return fs::is_regular_file(manifest.parent_path()/library);
     } catch (...) { return false; }
 }
+// A copied package must not inherit another launcher's absolute build selection.
+static fs::path resolveBuild(const fs::path& bundled, const fs::path& saved,
+                             bool samePackage, bool bundledValid, bool savedValid) {
+    if (samePackage && savedValid) return saved;
+    if (bundledValid) return bundled;
+    return savedValid ? saved : bundled;
+}
 static void setLayer(const fs::path& manifest={}) {
     if(!manifest.empty() && !validateLayer(manifest))
         throw std::runtime_error("Select the manifest from a complete EliteDccVR OpenXR build.");
@@ -145,7 +152,8 @@ static void maybeStartGame(){
 }
 static void saveSelection() {
     buildPaths[mode]=selected();
-    if(!WritePrivateProfileStringW(L"Launcher",L"OpenVR",buildPaths[0].c_str(),config.c_str()) ||
+    if(!WritePrivateProfileStringW(L"Launcher",L"PackageDirectory",packageDirectory.c_str(),config.c_str()) ||
+       !WritePrivateProfileStringW(L"Launcher",L"OpenVR",buildPaths[0].c_str(),config.c_str()) ||
        !WritePrivateProfileStringW(L"Launcher",L"OpenXR",buildPaths[1].c_str(),config.c_str()) ||
        !WritePrivateProfileStringW(L"Launcher",L"Backend",mode?L"1":L"0",config.c_str()) ||
        !WritePrivateProfileStringW(L"Launcher",L"StartElite",SendMessageW(gameBox,BM_GETCHECK,0,0)==BST_CHECKED?L"1":L"0",config.c_str()))
@@ -330,6 +338,11 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR command, int) {
         if (quote(L"C:\\a b\\test.exe") != L"\"C:\\a b\\test.exe\"") return 1;
         if (quote(L"a\\") != L"\"a\\\\\"") return 2;
         if (quote(L"a\"b") != L"\"a\\\"b\"") return 3;
+        const fs::path bundled=L"C:/new/OpenXR/layer.json", old=L"C:/old/layer.json";
+        if (resolveBuild(bundled,old,false,true,true)!=bundled) return 4;
+        if (resolveBuild(bundled,old,true,true,true)!=old) return 5;
+        if (resolveBuild(bundled,old,true,true,false)!=bundled) return 6;
+        if (resolveBuild(bundled,old,false,false,true)!=old) return 7;
         return 0;
     }
     HANDLE mutex = CreateMutexW(nullptr, FALSE, L"Local\\EliteDccVRLauncher");
@@ -366,12 +379,19 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR command, int) {
         wchar_t self[32768]{};
         GetModuleFileNameW(nullptr,self,32768);
         auto package=fs::path(self).parent_path();
+        packageDirectory=nativePath(package);
+        wchar_t previousPackage[32768]{};
+        GetPrivateProfileStringW(L"Launcher",L"PackageDirectory",L"",previousPackage,32768,config.c_str());
+        const bool samePackage=*previousPackage && !_wcsicmp(nativePath(previousPackage).c_str(),packageDirectory.c_str());
         buildPaths[0]=fs::path{};
         buildPaths[1]=package/L"OpenXR/EliteDccVR.OpenXRLayer.json";
         for(int i=0;i<2;++i){
             wchar_t saved[32768]{};
             GetPrivateProfileStringW(L"Launcher",i?L"OpenXR":L"OpenVR",L"",saved,32768,config.c_str());
-            if(*saved)buildPaths[i]=nativePath(saved);
+            const auto savedPath=*saved ? nativePath(fs::path(saved).is_relative()?package/fs::path(saved):fs::path(saved)) : fs::path{};
+            if(i==1)buildPaths[i]=resolveBuild(buildPaths[i],savedPath,samePackage,
+                validateLayer(buildPaths[i]),!savedPath.empty() && validateLayer(savedPath));
+            else if(!savedPath.empty() && fs::is_regular_file(savedPath))buildPaths[i]=savedPath;
         }
         SetWindowTextW(pathBox,buildPaths[mode].c_str());
         updateRuntime();
