@@ -1,0 +1,2 @@
+OpenXR-SDK-Source headers; revision 57572a0e91890fe7183de25a62153aec955d64ba
+Only include/openxr headers are redistributed. SPDX: Apache-2.0 OR MIT.

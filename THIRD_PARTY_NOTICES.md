@@ -13,3 +13,7 @@ This list applies to the bundled dependencies and reference data. Their licenses
 EDDI source revision: `d3b964ea7c8bb959ad6537f55b308f293a326905`. `exobiology-catalog.json` contains a compact transformation of species values, English names and minimum sample distances from OrganicSpecies, OrganicGenus and their resources. `integration/update_exobiology_catalog.py` regenerates this data from the pinned revision. The file's metadata identifies the source and units.
 
 The binary release includes these notices and all license texts. Elite Dangerous, its journals and game assets belong to their respective rights holders. No game shader bytecode, extracted game images or RenderDoc captures are distributed here. Runtime detection uses fingerprints and independently implemented geometry decoding.
+
+## OpenXR test edition
+
+Khronos OpenXR headers: experimental/openxr-sdk/include/openxr, OpenXR-SDK-Source revision 57572a0e91890fe7183de25a62153aec955d64ba. Header terms are Apache-2.0 OR MIT; texts are retained in experimental/openxr-sdk. This edition also uses the existing MinHook, JSON and WebView2 dependencies above. No extracted game assets, profiles or captures are distributed.

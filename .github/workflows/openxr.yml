@@ -1,0 +1,23 @@
+name: OpenXR build and portable tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  openxr:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build OpenXR layer
+        shell: cmd
+        run: experimental\openxr-layer\build.cmd
+      - name: Build desktop launcher
+        shell: cmd
+        run: experimental\launcher\build.cmd
+      - name: Portable native, input and layout regressions
+        shell: cmd
+        run: experimental\openxr-layer\verify.cmd
+      - name: Launcher self test
+        shell: cmd
+        run: experimental\launcher\EliteDccVRLauncher.exe --self-test

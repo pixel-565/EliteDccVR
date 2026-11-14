@@ -28,3 +28,13 @@
 *.suo
 .vs/
 __pycache__/
+
+# OpenXR development outputs and local runtime state
+/experimental/**/*.exe
+/experimental/**/*.dll
+/experimental/**/*.exp
+/experimental/**/*.lib
+/experimental/**/*.map
+/experimental/openxr-layer/nativeobj/
+/experimental/**/*.settings
+/experimental/**/*.position

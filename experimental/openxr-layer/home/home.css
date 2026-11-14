@@ -1,0 +1,34 @@
+:root { --fg: #eaf1ff; --bg: #142237; --muted: #b7cbe0; --status: #ffcf9d; --button: #294360; --link: #bce7ff; --border: #577594; --hover: #396385; --pressed: #995a20; --accent: #55d4ff; --dialog: #1c2f44; --dialog-border: #7194af; --input: #101b2b; --primary: #315979; --danger: #693b35; }
+:root { color-scheme: dark; font: 24px/1.5 "Segoe UI", sans-serif; color: var(--fg); background: var(--bg); }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px; }
+h1 { margin: 0 0 12px; font-size: 40px; }
+h2 { margin: 0 0 18px; font-size: 30px; }
+p { margin: 8px 0 18px; color: var(--muted); }
+#status:empty, #error:empty { display: none; }
+#status, #error { color: var(--status); }
+#links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; margin-top: 26px; }
+.shortcut { display: flex; min-width: 0; background: var(--button); border-radius: 12px; overflow: hidden; }
+a { flex: 1; min-width: 0; display: flex; align-items: center; color: var(--link); text-decoration: none; overflow-wrap: anywhere; padding: 22px; }
+button, input { font: inherit; }
+button, a { cursor: pointer; user-select: none; -webkit-user-drag: none; touch-action: manipulation; }
+button > *, a > * { pointer-events: none; }
+button { border: 1px solid var(--border); border-radius: 9px; padding: 12px 20px; color: var(--fg); background: var(--button); min-height: 58px; }
+button:hover, a:hover { background: var(--hover); }
+button:active, a:active { background: var(--pressed); }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.edit { border: 0; border-left: 1px solid var(--border); border-radius: 0; flex: 0 0 64px; padding: 14px; }
+.edit svg { width: 30px; height: 30px; display: block; }
+.add { width: 88px; height: 88px; padding: 0; font-size: 44px; line-height: 1; }
+dialog { color: var(--fg); background: var(--dialog); border: 2px solid var(--dialog-border); border-radius: 14px; padding: 24px; width: min(660px, calc(100% - 24px)); max-height: calc(100% - 24px); overflow-y: auto; }
+dialog::backdrop { background: rgb(0 0 0 / 55%); }
+label { display: block; margin-top: 14px; }
+input { width: 100%; min-width: 0; border: 2px solid var(--border); border-radius: 7px; background: var(--input); color: var(--fg); padding: 12px; }
+input:focus { outline: none; border-color: var(--accent); background: var(--button); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; margin-top: 20px; }
+.primary { background: var(--primary); border-color: var(--accent); }
+.danger { background: var(--danger); }
+#delete { margin-right: auto; }
+[hidden] { display: none !important; }
+
+:root[data-theme="elite"] { --fg: #ffcf94; --bg: #100e0c; --muted: #c9a477; --status: #ffcf9d; --button: #302215; --link: #ffb967; --border: #594027; --hover: #844817; --pressed: #a35316; --accent: #ff8c22; --dialog: #1c1711; --dialog-border: #c9a477; --input: #100e0c; --primary: #6b350b; --danger: #793b22; font-family: "Bahnschrift", "Segoe UI", sans-serif; }
